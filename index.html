@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,19 +10,19 @@
 
 <body>
     <h1>1-2반 노트북 충전함 비밀번호</h1>
-    <input type="text" id="answerInput" placeholder="6자리 숫자 입력(띄어쓰기 하지 마세요)">
-    <button id = "nextbtn" onclick="checkAnswer()">확인</button>
-    
+    <input type="text" id="answerInput" placeholder="6자리 숫자 입력(띄어쓰기 하지 마세요)" onkeydown="handleEnter(event)">
+    <button id="nextbtn" onclick="checkAnswer()">확인</button>
+
     <div id="result"></div>
 
     <script>
         function checkAnswer() {
             const userAnswer = document.getElementById("answerInput").value;
-            const correctAnswer = "411021"; // 여기에 올바른 답을 입력하세요
+            const correct = "411021";
 
             const resultDiv = document.getElementById("result");
 
-            if (userAnswer === correctAnswer) {
+            if (userAnswer === correct) {
                 resultDiv.innerHTML = "정답입니다!<br> @school_bssm_k 계정으로 이동하세요";
                 resultDiv.style.color = "#5AB0FF";
             } else {
@@ -31,6 +32,25 @@
 
             resultDiv.style.display = "block";
         }
+        function handleEnter(e) {
+            if (e.keyCode === 13) { // 엔터 키 입력
+                checkAnswer();
+            }
+        }
+        document.onkeydown = function (e) {
+            if (e.keyCode == 123) { // F12
+                return false;
+            }
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { // Ctrl+Shift+I
+                return false;
+            }
+        }
+        document.oncontextmenu = function () {
+            return false;
+        }
+
+
     </script>
 </body>
+
 </html>
